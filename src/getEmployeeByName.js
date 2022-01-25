@@ -11,6 +11,6 @@ function getEmployeeByName(employeeName) {
     nameEmployee.firstName === employeeName || nameEmployee.lastName === employeeName);
 }
 
-console.log(getEmployeeByName('Wishart'));
+// Ajuda de Tiemi Faustino.
 
 module.exports = getEmployeeByName;
