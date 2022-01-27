@@ -38,6 +38,6 @@ function getSchedule(scheduleTarget) {
   }
   return infos;
 }
-console.log(getSchedule('ala'));
-// Ajuda de Imar Mendes.
+// Ajuda de Imar Mendes, Danillo Gonçalves, Alexandre Summoyama na mentoria do dia, e Roberval Filho na monitoria individual.
+
 module.exports = getSchedule;
