@@ -1,6 +1,9 @@
 const data = require('../data/zoo_data');
 
 const { species, hours } = data;
+const weekdays = ['Tuesday', 'Thursday', 'Saturday', 'Sunday', 'Monday', 'Wednesday', 'Friday'];
+const animals = ['lions', 'tigers', 'bears', 'penguins',
+  'elephants', 'giraffes', 'otters', 'frogs', 'snakes'];
 
 const week = () => {
   const days = Object.keys(hours);
@@ -21,9 +24,20 @@ const week = () => {
   }, {});
 };
 // { 'officeHour': 'CLOSED', 'exhibition': 'The zoo will be closed!' }
-console.log(week());
+
 function getSchedule(scheduleTarget) {
-  return week();
+  const infos = week();
+  if (!scheduleTarget) return infos;
+  if (animals.includes(scheduleTarget)) {
+    return species.find(({ name }) => name === scheduleTarget).availability;
+  }
+  if (weekdays.includes(scheduleTarget)) {
+    return {
+      [scheduleTarget]: infos[scheduleTarget],
+    };
+  }
+  return infos;
 }
+console.log(getSchedule('ala'));
 // Ajuda de Imar Mendes.
 module.exports = getSchedule;
