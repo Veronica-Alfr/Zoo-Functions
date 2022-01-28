@@ -15,7 +15,8 @@ function getAnimalMap(options) {
   }
   if (options.includeNames) {
     return regions.reduce((acc, curr) => {
-      acc[curr] = species.filter(({ location }) => location === curr).map(({ name }) => ({ name }));
+      acc[curr] = species.filter(({ location }) => location === curr)
+        .map(({ name }) => ({ [name]: species.map(({ residents }) => residents) }));
       return acc;
     }, {});
   }
