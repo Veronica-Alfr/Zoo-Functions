@@ -31,13 +31,10 @@ function getAnimalMap(options) {
 
 console.log(getAnimalMap({ includeNames: true }));
 
-// Ajuda de Leandro Bonfim, Laís Nametala, Danillo Gonçalves, Imar Mendes
+// Ajuda de Leandro Bonfim, Laís Nametala, Danillo Gonçalves, Imar Mendes, Leo Araújo
 
 module.exports = getAnimalMap;
 
-//     ✕ com a opção `sorted: true` especificada, retorna nomes de animais ordenados (14ms)
-//     ✕ com a opção `sex: 'female'` ou `sex: 'male'` especificada,
-//     retorna somente nomes de animais macho/fêmea (9ms)
+//     ✕ com a opção `sex: 'female'` ou `sex: 'male'` especificada, retorna somente nomes de animais macho/fêmea
 //     ✕ com a opção `sex: 'female'` ou `sex: 'male'` especificada e a
-//     opção `sort: true` especificada, retorna somente
-//     nomes de animais macho/fêmea com os nomes dos animais ordenados
+//     opção `sort: true` especificada, retorna somente nomes de animais macho/fêmea com os nomes dos animais ordenados
