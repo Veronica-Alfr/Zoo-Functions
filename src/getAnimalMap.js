@@ -3,7 +3,7 @@ const data = require('../data/zoo_data');
 const { species } = data;
 const regions = ['NE', 'NW', 'SE', 'SW'];
 
-const nameAnimals = (sorted) => regions.reduce((acc, curr) => {
+const nameAnimals = (sorted, animal) => regions.reduce((acc, curr) => {
   acc[curr] = species.filter(({ location }) => location === curr)
     .map(({ name, residents }) => {
       if (!sorted) {
@@ -14,6 +14,18 @@ const nameAnimals = (sorted) => regions.reduce((acc, curr) => {
   return acc;
 }, {});
 
+const nameBySex = (animal, sorted) => regions.reduce((acc, curr) => {
+  acc[curr] = species.filter(({ location }) => location === curr)
+    .map(({ name, residents }) => {
+      if (animal.sex) {
+        return ({ [name]: residents.filter(({ sex }) => sex === animal.sex)
+          .map((nameAnimal) => nameAnimal.name) });
+      }
+    });
+  return acc;
+}, {});
+console.log(nameBySex({ includeNames: true, sex: 'male' }));
+
 function getAnimalMap(options) {
   console.log(options);
   if (!options || !options.includeNames) {
@@ -23,13 +35,10 @@ function getAnimalMap(options) {
     }, {});
   }
   const { sorted } = options;
-  if (options.sorted) {
-    return nameAnimals(sorted);
-  }
-  return nameAnimals();
+  return (options.sorted ? nameAnimals(sorted) : nameAnimals());
 }
 
-console.log(getAnimalMap({ includeNames: true }));
+// console.log(getAnimalMap({ includeNames: true }));
 
 // Ajuda de Leandro Bonfim, Laís Nametala, Danillo Gonçalves, Imar Mendes, Leo Araújo
 
