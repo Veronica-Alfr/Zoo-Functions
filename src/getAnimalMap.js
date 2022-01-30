@@ -3,18 +3,30 @@ const data = require('../data/zoo_data');
 const { species } = data;
 const regions = ['NE', 'NW', 'SE', 'SW'];
 
+const nameAnimals = (sorted) => regions.reduce((acc, curr) => {
+  acc[curr] = species.filter(({ location }) => location === curr)
+    .map(({ name, residents }) => {
+      if (!sorted) {
+        return ({ [name]: residents.map((resident) => resident.name) });
+      }
+      return ({ [name]: residents.map((resident) => resident.name).sort() });
+    });
+  return acc;
+}, {});
+
 function getAnimalMap(options) {
+  console.log(options);
   if (!options || !options.includeNames) {
     return regions.reduce((acc, curr) => {
       acc[curr] = species.filter(({ location }) => location === curr).map(({ name }) => name);
       return acc;
     }, {});
   }
-  return regions.reduce((acc, curr) => {
-    acc[curr] = species.filter(({ location }) => location === curr)
-      .map(({ name, residents }) => ({ [name]: residents.map((resident) => resident.name) }));
-    return acc;
-  }, {});
+  const { sorted } = options;
+  if (options.sorted) {
+    return nameAnimals(sorted);
+  }
+  return nameAnimals();
 }
 
 console.log(getAnimalMap({ includeNames: true }));
